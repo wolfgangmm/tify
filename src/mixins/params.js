@@ -56,6 +56,14 @@ export default {
 			}
 
 			this.updateOptions({ pages });
+
+			const canvases = pages.map((page) => this.$root.canvases[page]);
+			this.$el.dispatchEvent(new CustomEvent('page', {
+				detail: {
+					pages,
+					canvases,
+				},
+			}));
 			return pages;
 		},
 		updateOptions(options) {
